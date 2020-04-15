@@ -11,8 +11,10 @@ import androidx.test.internal.runner.listener.ActivityFinisherRunListener;
 import android.support.*;
 import android.support.test.rule.ActivityTestRule;
 
+import static androidx.test.espresso.Espresso.closeSoftKeyboard;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -30,12 +32,11 @@ public class EspressoExample {
 
     @Test
     public void firstToShow(){
-        onView(withId(R.id.gone))
-        .perform(click());
+        onView(withId(R.id.editText)).perform(typeText("5"));
+        onView(withId(R.id.editText)).perform(typeText("5"));
 
-        onView(withText("Hello World"))
-                .check(matches(isDisplayed()));
+        onView(withId(R.id.division)).perform(click());
 
-
+        onView(withId(R.string.ergebnis)).check(matches(isDisplayed()));
     }
 }
