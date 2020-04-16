@@ -29,11 +29,13 @@ public class EspressoExample {
             new ActivityScenarioRule<>(MainActivity.class);
 
     @Before
+    @Repeat(100)
     public void initValidString(){
         ergebnis = "Ergebnis: 1.0.";
     }
 
     @Test
+    @Repeat(100)
     public void firstToShow(){
         onView(withId(R.id.editText)).perform(typeText("5"), closeSoftKeyboard());
         onView(withId(R.id.editText2)).perform(typeText("5"), closeSoftKeyboard());
@@ -42,6 +44,7 @@ public class EspressoExample {
     }
 
     @After
+    @Repeat(100)
     public void assertat(){
 
         onView(withId(R.id.textView)).check(matches(withText(ergebnis)));
