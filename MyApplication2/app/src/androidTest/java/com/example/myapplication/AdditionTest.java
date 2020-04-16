@@ -32,7 +32,7 @@ private String ergb;
     public void validString(){
             ergb = "Ergebnis: 10.0.";
     }
-    
+
     @Test
     public void addTest(){
         onView(withId(R.id.editText)).perform(typeText("5"), closeSoftKeyboard());
