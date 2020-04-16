@@ -1,42 +1,55 @@
 package com.example.myapplication;
 
-import android.app.Activity;
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import androidx.test.filters.LargeTest;
-import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner;
-import androidx.test.internal.runner.listener.ActivityFinisherRunListener;
 
-import android.support.*;
-import android.support.test.rule.ActivityTestRule;
-
-import static androidx.test.espresso.Espresso.closeSoftKeyboard;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
+import static androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 
-@RunWith(AndroidJUnit4ClassRunner.class)
+@RunWith(AndroidJUnit4.class)
 @LargeTest
 public class EspressoExample {
+    private String ergebnis;
 
     @Rule
-    public ActivityTestRule<MainActivity> activityTestRule =
-            new ActivityTestRule<>(MainActivity.class);
+    public ActivityScenarioRule<MainActivity> activityTestRule =
+            new ActivityScenarioRule<>(MainActivity.class);
+
+    @Before
+    public void initValidString(){
+        ergebnis = "Ergebnis: 1.0.";
+    }
 
     @Test
     public void firstToShow(){
-        onView(withId(R.id.editText)).perform(typeText("5"));
-        onView(withId(R.id.editText)).perform(typeText("5"));
+        onView(withId(R.id.editText)).perform(typeText("5"), closeSoftKeyboard());
+        onView(withId(R.id.editText2)).perform(typeText("5"), closeSoftKeyboard());
 
         onView(withId(R.id.division)).perform(click());
 
-        onView(withId(R.string.ergebnis)).check(matches(isDisplayed()));
+        onView(withId(R.id.addi)).perform(click());
+
     }
+
+    @After
+    public void assertat(){
+        onView(withId(R.id.textView)).check(matches(withText(ergebnis)));
+    }
+
+
 }
