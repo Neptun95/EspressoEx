@@ -15,8 +15,6 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
@@ -41,14 +39,13 @@ public class EspressoExample {
         onView(withId(R.id.editText2)).perform(typeText("5"), closeSoftKeyboard());
 
         onView(withId(R.id.division)).perform(click());
-
-        onView(withId(R.id.addi)).perform(click());
-
     }
 
     @After
     public void assertat(){
+
         onView(withId(R.id.textView)).check(matches(withText(ergebnis)));
+
     }
 
 
