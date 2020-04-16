@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
             ergeb = zahl - zahl2;
 
-            ergebniss.setText(getString(R.string.ergebnis, String.valueOf(ergeb)));
+            ergebniss.setText(String.valueOf(ergeb));
         }
     }
 
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
             ergeb = zahl + zahl2;
 
-            ergebniss.setText(getString(R.string.ergebnis, String.valueOf(ergeb)));
+            ergebniss.setText( getString(R.string.ergebnis, String.valueOf(ergeb)));
         }
     }
 
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
             ergeb = zahl * zahl2;
 
-            ergebniss.setText(getString(R.string.ergebnis, String.valueOf(ergeb)));
+            ergebniss.setText(String.valueOf(ergeb));
         }
     }
 
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
             ergeb = zahl / zahl2;
 
-            ergebniss.setText(getString(R.string.ergebnis, String.valueOf(ergeb)));
+            ergebniss.setText(String.valueOf(ergeb));
         }
     }
 }
