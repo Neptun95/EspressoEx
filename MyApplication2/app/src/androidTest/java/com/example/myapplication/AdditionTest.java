@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import androidx.test.filters.LargeTest;
 
-import java.lang.annotation.Repeatable;
+import java.util.Random;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -25,23 +25,28 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 @LargeTest
 public class AdditionTest {
     private String ergebnis;
-
+    private double e1,e2;
     @Rule
     public ActivityScenarioRule<MainActivity> activityTestRule =
             new ActivityScenarioRule<>(MainActivity.class);
 
+    @Rule
+    public RepeatRule repeatRule = new RepeatRule();
+
+
     @Before
     public void initValidString(){
-        ergebnis = "Ergebnis: 10.0.";
+        ergebnis = "Ergebnis: 10.0";
     }
 
     @Test
     @Repeat(10)
-    public void firstToShow(){
+    public void addTest(){
         onView(withId(R.id.editText)).perform(typeText("5"), closeSoftKeyboard());
         onView(withId(R.id.editText2)).perform(typeText("5"), closeSoftKeyboard());
 
         onView(withId(R.id.addi)).perform(click());
+
     }
 
     @After

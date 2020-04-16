@@ -10,6 +10,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import androidx.test.filters.LargeTest;
 
+import java.util.Random;
+
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
@@ -28,23 +30,26 @@ public class EspressoExample {
     public ActivityScenarioRule<MainActivity> activityTestRule =
             new ActivityScenarioRule<>(MainActivity.class);
 
+    @Rule
+    public RepeatRule repeatRule = new RepeatRule();
+
+
     @Before
-    @Repeat(100)
     public void initValidString(){
-        ergebnis = "Ergebnis: 1.0.";
+        ergebnis = "2.5";
     }
 
     @Test
-    @Repeat(100)
-    public void firstToShow(){
+    @Repeat(10)
+    public void divTest(){
         onView(withId(R.id.editText)).perform(typeText("5"), closeSoftKeyboard());
-        onView(withId(R.id.editText2)).perform(typeText("5"), closeSoftKeyboard());
+        onView(withId(R.id.editText2)).perform(typeText("2"), closeSoftKeyboard());
 
         onView(withId(R.id.division)).perform(click());
+
     }
 
     @After
-    @Repeat(100)
     public void assertat(){
 
         onView(withId(R.id.textView)).check(matches(withText(ergebnis)));
